@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Aliment;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Aliment|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,6 +20,11 @@ class AlimentRepository extends ServiceEntityRepository
         parent::__construct($registry, Aliment::class);
     }
 
+    public function findAllWithPagination(): Query
+    {
+        return $this->createQueryBuilder('aliment')
+            ->getQuery();
+    }
     // /**
     //  * @return Aliment[] Returns an array of Aliment objects
     //  */

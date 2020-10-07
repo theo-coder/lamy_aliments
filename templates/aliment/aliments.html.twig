@@ -48,4 +48,9 @@
     {% endfor %}
 </div>
 
+{# Aficher le paginateur #}
+<div class="navigation d-flex justify-content-center">
+    {{ knp_pagination_render(aliments) }}
+</div>
+
 {% endblock %}
