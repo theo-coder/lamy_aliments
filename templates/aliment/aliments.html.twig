@@ -2,7 +2,50 @@
 
 {% block title %}Hello AlimentController!{% endblock %}
 
-{% block titrePage %}Aliments{% endblock %}
+{% block titrePage %}Liste des aliments{% endblock %}
 {% block body %}
-salut
+<div class="row">
+    {% for aliment in aliments %}
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+        {# Card pour aliment #}
+        <div class="card mb-3 mx-auto">
+            <div class="card-body text-center">
+                <h4 class="card-title border-bottom border-dark pb-2"><strong>{{ aliment.nom }}</strong></h4>
+                <p><small><i><b> Créé le  </b>{{ aliment.createdAt|date('d/m/Y') }}</i></small></p>
+                <div class="card-text">
+                    <h5>Prix (Kilo) : {{ aliment.prix }}€</h5>
+                    <table class="table table-dark">
+                        <thead class="thead-dark">
+                            <tr class="table-info">
+                                <th>Propriété</th>
+                                <th>Valeur</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Calories</td>
+                                <td>{{ aliment.calorie }}</td>
+                            </tr>
+                            <tr>
+                                <td>Glucides</td>
+                                <td>{{ aliment.glucide|number_format(2) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Lipides</td>
+                                <td>{{ aliment.lipide|number_format(2) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Protéines</td>
+                                <td>{{ aliment.proteine|number_format(2) }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><strong>Catégorie : {{ aliment.categorie.libelle }}</strong></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock %}
