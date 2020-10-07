@@ -23,6 +23,7 @@ class AlimentRepository extends ServiceEntityRepository
     public function findAllWithPagination(): Query
     {
         return $this->createQueryBuilder('aliment')
+            ->orderBy('aliment.createdAt', 'DESC')
             ->getQuery();
     }
     // /**
