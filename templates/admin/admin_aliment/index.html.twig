@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin aliments{% endblock %}
+{% block titrePage %}Administration des aliments{% endblock %}
+
+{% block body %}
+<a href="" class="btn btn-success mb-2">Ajouter</a>
+<table class="table">
+    <thead>
+        <tr class="table-dark text-center">
+            <th>Nom</th>
+            <th>Prix</th>
+            <th>Calories</th>
+            <th>Protéines</th>
+            <th>Lipides</th>
+            <th>Glucides</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    {% for aliment in aliments %}
+        <tr class="text-center">
+            <td>{{ aliment.nom }}</td>
+            <td>{{ aliment.prix|number_format(2) }}€</td>
+            <td>{{ aliment.calorie|number_format(2) }}</td>
+            <td>{{ aliment.proteine|number_format(2) }}</td>
+            <td>{{ aliment.lipide|number_format(2) }}</td>
+            <td>{{ aliment.glucide|number_format(2) }}</td>
+            <td>
+                <a href="" class="btn btn-secondary mb-2">Modifier</a>
+                <a href="" class="btn btn-dark mb-2">Supprimer</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{# Aficher le paginateur #}
+<div class="navigation d-flex justify-content-center">
+    {{ knp_pagination_render(aliments) }}
+</div>
+{% endblock %}
